@@ -1,7 +1,9 @@
 "use client";
 import React, { useState } from 'react'
 import Image from 'next/image';
-import { Swiper as SwiperType, SwiperSlide } from 'swiper/react';
+// import { Swiper as SwiperType, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import type { Swiper as SwiperType } from 'swiper';
 import { Autoplay, FreeMode, Thumbs } from 'swiper/modules';
 interface ProductSliderProps {
   images: string[],
@@ -11,7 +13,7 @@ export default function ProductSlider({ images }: ProductSliderProps) {
     useState<SwiperType | null>(null);
   return (
     <>
-      <SwiperType className='mb-3 mySwiper2'
+      <Swiper className='mb-3 mySwiper2'
         spaceBetween={10}
         navigation={true}
         thumbs={{ swiper: thumbsSwiper }}
@@ -24,8 +26,8 @@ export default function ProductSlider({ images }: ProductSliderProps) {
             </SwiperSlide>
           )
           )}
-      </SwiperType>
-      <SwiperType
+      </Swiper>
+      <Swiper
         onSwiper={setThumbsSwiper}
         slidesPerView={4}
         spaceBetween={10}
@@ -37,7 +39,7 @@ export default function ProductSlider({ images }: ProductSliderProps) {
             </SwiperSlide>
           )
           )}
-      </SwiperType>
+      </Swiper>
     </>
   )
 }

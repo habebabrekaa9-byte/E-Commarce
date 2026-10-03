@@ -1,6 +1,7 @@
 "use client";
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import type { SwiperOptions } from "swiper/types";
 import { Autoplay, Pagination } from 'swiper/modules';
 
 
@@ -21,8 +22,8 @@ const basicSwiperOptions = {
 interface CommonSliderProps {
     images: Images[],
     className?: string,
-    isMainSlider: boolean
-    
+    isMainSlider: boolean,
+    swiperOptions?: SwiperOptions
 }
 interface Images {
     name: string,
