@@ -14,9 +14,16 @@ declare module "next-auth" {
             email: string,
             name: string,
         }
+        accessToken?: string;
     }
+   
 }
 
+// declare module "next-auth" {
+//     interface Session {
+//         accessToken?: string;
+//     }
+// }
 
 declare module "next-auth/jwt" {
     /** Returned by the `jwt` callback and `getToken`, when using JWT sessions */
