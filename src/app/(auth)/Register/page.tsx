@@ -19,20 +19,49 @@ export default function Registerpage() {
     resolver: zodResolver(registerSchema),
     mode: "onChange"
   })
+  // async function onSubmit(formValues: registerPayLoadType) {
+  //   console.log(formValues);
+  //   // fetch api
+  //   const res = await signIn("credentials", { ...formValues, redirect: false, callbackUrl: "/" })
+  //   console.log(res);
+  //   if (res?.ok) {
+  //     toast.success("Event has been success.Welcome back")
+  //     router.push("/Login")
+  //   } else {
+  //     toast.error("Event has been not success.")
+  //   }
+
+  //   // const data = await registerHandling(formValues);
+  //   // console.log("data",data);
+  // }
   async function onSubmit(formValues: registerPayLoadType) {
     console.log(formValues);
-    // fetch api
-    const res = await signIn("credentials", { ...formValues, redirect: false, callbackUrl: "/" })
-    console.log(res);
-    if (res?.ok) {
-      toast.success("Event has been success.Welcome back")
-      router.push("/Login")
-    } else {
-      toast.error("Event has been not success.")
-    }
 
-    // const data = await registerHandling(formValues);
-    // console.log("data",data);
+    // Register
+    const data = await registerHandling(formValues);
+    console.log("register data", data);
+
+    if (data?.status) {
+      toast.success("Account created successfully");
+
+      // Login after successful registration
+      const res = await signIn("credentials", {
+        email: formValues.email,
+        password: formValues.password,
+        redirect: false,
+      });
+
+      console.log("login response", res);
+
+      if (res?.ok) {
+        toast.success("Welcome back");
+        router.push("/");
+      } else {
+        toast.error("Account created, but login failed");
+      }
+    } else {
+      toast.error(data?.message || "Registration failed");
+    }
   }
   return (
     <section className='py-12'>

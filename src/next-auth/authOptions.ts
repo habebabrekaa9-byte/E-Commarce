@@ -24,7 +24,8 @@ export const authOptions: NextAuthOptions = {
                         }
                     )
                     const data = await res.json();
-
+                    console.log("LOGIN API RESPONSE =", data);
+                    console.log("LOGIN API STATUS =", res.status);
                     if (!res.ok) {
                         throw new Error(data.message || "Invaldatin message , somthing went error");
                     }
